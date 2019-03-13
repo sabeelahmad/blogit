@@ -14,14 +14,14 @@ class App extends Component {
   state = { blogPosts: [] };
 
   // Callback for the TextArea component to receive the blog text.
-  onFormSubmit = blogBody => {
+  onFormSubmit = (blogTitle, blogBody) => {
     // Form a single blog.
     /* It will be an object with two properties 
       => 1. Title
       => 2. Blog Body 
     */
     const newBlog = {
-      title: "New Blog",
+      title: blogTitle,
       body: blogBody
     };
     // Update state

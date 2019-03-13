@@ -13,14 +13,14 @@ import React from "react";
 import "./TextArea.css";
 
 class TextArea extends React.Component {
-  state = { blogBody: "" };
+  state = { blogBody: "", blogTitle: "" };
 
   /* Helper function for handling the blog post submission, it will pass the blog text to the App component */
   onFormSubmit = e => {
     // Prevent refresh of page on form submission
     e.preventDefault();
     // Now pass this to the App component, where it will be added to list of all blog posts.
-    this.props.onSubmit(this.state.blogBody);
+    this.props.onSubmit(this.state.blogTitle, this.state.blogBody);
   };
 
   /* Blog body update handler */
@@ -29,9 +29,19 @@ class TextArea extends React.Component {
     this.setState({ blogBody: e.target.value });
   };
 
+  /* Blog title update handler */
+  onInputChange = e => {
+    // Update state
+    this.setState({ blogTitle: e.target.value });
+  };
+
   render() {
     return (
       <form onSubmit={this.onFormSubmit} className="ui form text-area">
+        <div className="field">
+          <label>What's the title?</label>
+          <input onChange={this.onInputChange} type="text" />
+        </div>
         <div className="field">
           <label>Type it out!</label>
           <textarea onChange={this.onTextAreaChange} />
