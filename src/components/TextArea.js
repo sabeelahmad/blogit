@@ -10,46 +10,70 @@
 */
 
 import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createBlog } from "../actions";
 import "./TextArea.css";
 
 class TextArea extends React.Component {
-  state = { blogBody: "", blogTitle: "" };
+  //state = { blogBody: "", blogTitle: "" };
 
   /* Helper function for handling the blog post submission, it will pass the blog text to the App component */
-  onFormSubmit = e => {
+  onFormSubmit = formValues => {
     // Prevent refresh of page on form submission
-    e.preventDefault();
-    // Now pass this to the App component, where it will be added to list of all blog posts.
-    this.props.onSubmit(this.state.blogTitle, this.state.blogBody);
+    // e.preventDefault();
+    // // Now pass this to the App component, where it will be added to list of all blog posts.
+    // this.props.onSubmit(this.state.blogTitle, this.state.blogBody);
+    console.log(formValues);
   };
 
-  /* Blog body update handler */
-  onTextAreaChange = e => {
-    // Update state
-    this.setState({ blogBody: e.target.value });
+  // /* Blog body update handler */
+  // onTextAreaChange = e => {
+  //   // Update state
+  //   this.setState({ blogBody: e.target.value });
+  // };
+
+  // /* Blog title update handler */
+  // onInputChange = e => {
+  //   // Update state
+  //   this.setState({ blogTitle: e.target.value });
+  // };
+
+  // Helper function to render input tag
+  renderInput = ({ input }) => {
+    return (
+      <div className="field">
+        <label>What's the title?</label>
+        <input {...input} />
+      </div>
+    );
   };
 
-  /* Blog title update handler */
-  onInputChange = e => {
-    // Update state
-    this.setState({ blogTitle: e.target.value });
+  // Helper function to render text area tag
+  renderTextArea = ({ input }) => {
+    //console.log(input);
+    return (
+      <div className="field">
+        <label>Type it out!</label>
+        <textarea {...input} />
+      </div>
+    );
   };
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit} className="ui form text-area">
-        <div className="field">
-          <label>What's the title?</label>
-          <input onChange={this.onInputChange} type="text" />
-        </div>
-        <div className="field">
-          <label>Type it out!</label>
-          <textarea onChange={this.onTextAreaChange} />
-        </div>
+      <form
+        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+        className="ui form text-area"
+      >
+        <Field name="title" component={this.renderInput} />
+        <Field name="blogBody" component={this.renderTextArea} />
         <button className="ui black button">Blog It!</button>
       </form>
     );
   }
 }
 
-export default TextArea;
+export default reduxForm({
+  form: "createBlog"
+})(TextArea);
