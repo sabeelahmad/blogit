@@ -11,22 +11,22 @@ class App extends Component {
      list of blogs
   */
 
-  state = { blogPosts: [] };
+  //state = { blogPosts: [] };
 
   // Callback for the TextArea component to receive the blog text.
-  onFormSubmit = (blogTitle, blogBody) => {
-    // Form a single blog.
-    /* It will be an object with two properties 
-      => 1. Title
-      => 2. Blog Body 
-    */
-    const newBlog = {
-      title: blogTitle,
-      body: blogBody
-    };
-    // Update state
-    this.setState({ blogPosts: [...this.state.blogPosts, newBlog] });
-  };
+  // onFormSubmit = (blogTitle, blogBody) => {
+  //   // Form a single blog.
+  //   /* It will be an object with two properties
+  //     => 1. Title
+  //     => 2. Blog Body
+  //   */
+  //   const newBlog = {
+  //     title: blogTitle,
+  //     body: blogBody
+  //   };
+  //   // Update state
+  //   this.setState({ blogPosts: [...this.state.blogPosts, newBlog] });
+  // };
 
   render() {
     return (
@@ -36,7 +36,7 @@ class App extends Component {
           tagline="“Blogging is a conversation, not a code.”"
         />
         <div className="ui container">
-          <TextArea onSubmit={this.onFormSubmit} />
+          <TextArea />
         </div>
         <div className="list-heading">
           <Banner
@@ -45,7 +45,7 @@ class App extends Component {
           />
         </div>
         <div className="ui container blog-list">
-          <BlogList blogs={this.state.blogPosts} />
+          <BlogList />
         </div>
       </div>
     );

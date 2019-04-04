@@ -24,7 +24,8 @@ class TextArea extends React.Component {
     // e.preventDefault();
     // // Now pass this to the App component, where it will be added to list of all blog posts.
     // this.props.onSubmit(this.state.blogTitle, this.state.blogBody);
-    console.log(formValues);
+    //console.log(formValues, this.props.blogs);
+    this.props.createBlog(formValues.title, formValues.blogBody);
   };
 
   // /* Blog body update handler */
@@ -74,6 +75,19 @@ class TextArea extends React.Component {
   }
 }
 
-export default reduxForm({
+// Mapping state to props
+// const mapStateToProps = state => {
+//   return { blogs: state.blogs };
+// };
+
+// Wrapper for redux form
+const WrappedForm = reduxForm({
   form: "createBlog"
 })(TextArea);
+
+// Connect component in order to access the mapped state to props in current component
+// And to hook up the blog creation action creator to the component
+export default connect(
+  null,
+  { createBlog }
+)(WrappedForm);

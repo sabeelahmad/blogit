@@ -9,9 +9,11 @@
 */
 
 import React from "react";
+import { connect } from "react-redux";
 
-const BlogList = ({ blogs }) => {
-  return blogs.map(blog => {
+const BlogList = props => {
+  console.log(props.blogs);
+  return props.blogs.map(blog => {
     return (
       <div key={blog.title} className="ui segment">
         <h3 className="ui header">{blog.title}</h3>
@@ -21,4 +23,9 @@ const BlogList = ({ blogs }) => {
   });
 };
 
-export default BlogList;
+// Mapping state to props
+const mapStateToProps = state => {
+  return { blogs: state.blogs };
+};
+
+export default connect(mapStateToProps)(BlogList);

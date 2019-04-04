@@ -1,3 +1,7 @@
 .app, .list-heading, .blog-list {
     margin-top: 25px;
 }
+
+.blog-list {
+    margin-bottom: 50px;
+}
