@@ -45,7 +45,7 @@ class TextArea extends React.Component {
     return (
       <div className="field">
         <label>What's the title?</label>
-        <input {...input} />
+        <input {...input} autoComplete="off" />
       </div>
     );
   };
