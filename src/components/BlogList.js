@@ -1,13 +1,3 @@
-/* 
-  Functional Component that will receive a list of blogs and 
-  render them to the screen
-*/
-
-/* 
-  TODO : Abstract the component a bit more by making a separate component for each blog that is displayed,
-  can be named blogdetails?
-*/
-
 import React from "react";
 import { connect } from "react-redux";
 import { deleteBlog } from "../actions";
@@ -16,9 +6,7 @@ class BlogList extends React.Component {
   // Delete blog post handler
   onDeleteClick = e => {
     // Call delete action creator
-    // But we need to have some parameter to delete this blog, can we do it solely on basis of title?
-    // Maybe we can for now simply match the blog title and content and delete.
-    // Later maybe introduce a rest api server and then assign id's to each blog.
+    // We are fetching the title and body from the data attributes on the delete button
     this.props.deleteBlog(e.target.dataset.title, e.target.dataset.body);
   };
 
