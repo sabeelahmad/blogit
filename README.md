@@ -1,7 +1,6 @@
 ### React Blog
 
-This is a simple react blog that uses just state to manage the list of blogs. The data is not persistent since it is not
-coming from any database.
+This is a simple react & redux blog that uses just state to manage the list of blogs. The data is not persistent since it is not coming from any database.
 
 ### `npm install`
 
@@ -18,4 +17,6 @@ and pitch their ideas to make it better. You can add features, add CSS to make i
 
 ### Further Ideas
 
-Currently, my next aim is to add Redux for state management. Any contribution are welcome!
+Now that Redux has been integrated , the next step can be to convert it into a full blown rest api 
+blog, with a backend server. We can use a simple json-server or we can use an express server as well.
+Any contributors are welcome!
