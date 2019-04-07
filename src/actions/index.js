@@ -14,3 +14,12 @@ export const createBlog = (title, body) => {
 };
 
 // Action creator to delete a blog
+export const deleteBlog = (title, body) => {
+  return {
+    type: DELETE_BLOG,
+    payload: {
+      title,
+      body
+    }
+  };
+};

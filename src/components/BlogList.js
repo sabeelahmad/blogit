@@ -10,15 +10,16 @@
 
 import React from "react";
 import { connect } from "react-redux";
+import { deleteBlog } from "../actions";
 
 class BlogList extends React.Component {
   // Delete blog post handler
   onDeleteClick = e => {
-    console.log("DELETE!");
     // Call delete action creator
     // But we need to have some parameter to delete this blog, can we do it solely on basis of title?
     // Maybe we can for now simply match the blog title and content and delete.
     // Later maybe introduce a rest api server and then assign id's to each blog.
+    this.props.deleteBlog(e.target.dataset.title, e.target.dataset.body);
   };
 
   renderBlogs = () => {
@@ -28,13 +29,15 @@ class BlogList extends React.Component {
           <div className="content">
             <div className="header">{blog.title}</div>
             <div className="description">{blog.body}</div>
-            <button
-              className="ui right floated red button"
-              onClick={this.onDeleteClick}
-            >
-              Delete Blog
-            </button>
           </div>
+          <button
+            className="ui right floated red button"
+            onClick={this.onDeleteClick}
+            data-title={blog.title}
+            data-body={blog.body}
+          >
+            Delete Blog
+          </button>
         </div>
       );
     });
@@ -50,4 +53,7 @@ const mapStateToProps = state => {
   return { blogs: state.blogs };
 };
 
-export default connect(mapStateToProps)(BlogList);
+export default connect(
+  mapStateToProps,
+  { deleteBlog }
+)(BlogList);

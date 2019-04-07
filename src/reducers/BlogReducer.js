@@ -1,4 +1,5 @@
 import { CREATE_BLOG } from "../actions/types";
+import { DELETE_BLOG } from "../actions/types";
 
 // Blog creation reducer
 // Recieves current state and action
@@ -10,6 +11,12 @@ export default (state = [], action) => {
   switch (action.type) {
     case CREATE_BLOG:
       return [...state, action.payload];
+    case DELETE_BLOG:
+      return state.filter(
+        blog =>
+          blog.title !== action.payload.title ||
+          blog.body !== action.payload.body
+      );
     default:
       return state;
   }
